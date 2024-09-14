@@ -204,7 +204,7 @@ export default function Home() {
       )}
 
       {/* Back to Home button */}
-      <Link href="/" passHref>
+      <Link href="https://opti-tunity.vercel.app/" passHref>
         <button
           style={{
             marginTop: '30px',
