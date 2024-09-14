@@ -1,0 +1,52 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+/* Styles for the form container */
+.form {
+  margin-top: 20px; /* Adds some space above the form */
+}
+
+/* Styles for the input field */
+.input {
+  padding: 10px; /* Padding inside the input for better spacing */
+  font-size: 16px; /* Larger font size for readability */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light grey border */
+  width: 300px; /* Fixed width of the input field */
+}
+
+/* Styles for the submit button */
+.button {
+  padding: 10px 20px; /* Padding inside the button */
+  margin-left: 10px; /* Adds space between the input field and the button */
+  background-color: #0070f3; /* Blue background color */
+  color: white; /* White text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+/* Styles for the result container */
+.result {
+  margin-top: 20px; /* Adds space above the result section */
+  padding: 20px; /* Padding inside the result container */
+  background-color: #f5f5f5; /* Light grey background color */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Styles for the result header */
+.result h3 {
+  margin-bottom: 10px; /* Adds space below the header */
+}
+
+/* Styles for the JSON display */
+.result pre {
+  background-color: #e0e0e0; /* Slightly darker grey background for JSON */
+  padding: 10px; /* Padding inside the pre element */
+  border-radius: 5px; /* Rounded corners */
+}
