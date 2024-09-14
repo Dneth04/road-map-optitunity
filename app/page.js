@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// Recursive component to render JSON data in a readable format with styled subheadings
 const RenderJson = ({ data }) => {
   if (typeof data === 'string' || typeof data === 'number') {
     return <p>{data}</p>;
@@ -66,8 +65,6 @@ export default function Home() {
       }
 
       let data = await response.text();
-      console.log(data);
-
       if (typeof data === 'object') {
         throw new Error('Unexpected response format');
       }
@@ -83,47 +80,58 @@ export default function Home() {
   return (
     <main
       style={{
-        display: 'flex', whiteSpace: 'pre-wrap',
+        display: 'flex', 
+        whiteSpace: 'pre-wrap',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: '30px',
+        justifyContent: 'flex-start',  // Ensure the content stays at the top
+        paddingTop: '200px', // Add top padding to push content below fixed header/logo
+        paddingLeft: '20px',
+        paddingRight: '20px',
         background: 'linear-gradient(to right, rgba(20, 30, 48, 0.7), rgba(36, 59, 85, 0.9)), url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDZneW5la3Q4am9hcWMzb3RuM2c2bHgwaGxzaWI2c3p5ZmdtZGw2eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FlodpfQUBSp20/giphy.webp)',
         backgroundPosition: 'center',
         minHeight: '100vh',
         fontFamily: 'Poppins, sans-serif',
         position: 'relative'
-      }}>
+      }}
+    >
 
       <img
         src="/footerlogo.svg"  
         alt="Logo"
         style={{
-          position: 'fixed',
-          top: '5px',
+          position: 'absolute',  // Keep the logo fixed
+          top: '20px',
           left: '20px',
-          width: '220px',
-          height: '150px',
-          cursor: 'pointer',
+          width: '150px',  // Adjusted size for better UI
+          height: 'auto',
+          zIndex: 10,  // Ensure logo stays on top
         }}
       />
 
       <h1
         style={{
+          position: 'absolute',  // Fix the position so it doesn't move
+          top: '220px',
+          left: '50%',
+          transform: 'translateX(-50%)',
           fontSize: '52px',
           fontWeight: 'bold',
           background: 'linear-gradient(to right, #00c6ff, #0072ff)',
           WebkitBackgroundClip: 'text',
           color: 'transparent',
           textAlign: 'center',
+          zIndex: 10,
         }}>
         Roadmap
       </h1>
+
       <h3
         style={{
           padding: '20px',
           fontSize: '15px',
           color: '#ffffff',
+          marginTop: '100px'  // Adjust margin to space out from fixed elements
         }}>
         Enter your desired career to obtain a detailed roadmap to achieve it!
       </h3>
@@ -131,7 +139,8 @@ export default function Home() {
       <form onSubmit={handleSubmit}
         style={{
           marginBottom: '20px', display: 'flex',
-          flexDirection: 'column', alignItems: 'center'
+          flexDirection: 'column', alignItems: 'center',
+          width: '100%',
         }}>
 
         <input
@@ -140,14 +149,21 @@ export default function Home() {
           onChange={(e) => setJobTitle(e.target.value)}
           placeholder="Enter any career-related questions"
           style={{
-            padding: '20px', width: '50rem', border: '2px solid', borderColor: 'wheat', borderRadius: '10px'
+            padding: '15px', 
+            width: '80%',  // Adjusted to be responsive
+            maxWidth: '600px',  // Max width for large screens
+            border: '2px solid', 
+            borderColor: 'wheat', 
+            borderRadius: '10px',
+            fontSize: '16px',
           }}
           required
         />
-        <p style={{ padding: '10px' }}></p>
-        <div className='a' style={{ alignItems: 'center', paddingLeft: '40%' }}>
+        <div style={{ padding: '10px' }}></div>
 
-          <button type="submit" style={{
+        <button 
+          type="submit" 
+          style={{
             marginTop: '10px',
             backgroundColor: 'grey',
             padding: '10px 30px',
@@ -155,13 +171,14 @@ export default function Home() {
             color: '#fff',
             border: 'none',
             cursor: 'pointer',
-          }}>
-            {loading ? 'Loading...' : 'Search'}
-          </button>
-
-        </div>
+            fontSize: '16px',
+          }}
+        >
+          {loading ? 'Loading...' : 'Search'}
+        </button>
 
       </form>
+
       {error && <p style={{ color: 'red', fontFamily: 'Poppins, sans-serif' }}>Error: {error}</p>}
 
       {summary ? (
